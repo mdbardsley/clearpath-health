@@ -43,7 +43,7 @@ export default function Onboarding() {
 
           <div className="mt-8 flex items-center justify-center gap-8 md:justify-start grayscale opacity-60">
              {/* Mock trust logos */}
-             <div className="font-bold text-lg text-muted-foreground">EPIC</div>
+             <div className="font-bold text-lg text-muted-foreground">EPIC MyChart</div>
              <div className="font-bold text-lg text-muted-foreground">Cerner</div>
              <div className="font-bold text-lg text-muted-foreground">Mayo Clinic</div>
           </div>
