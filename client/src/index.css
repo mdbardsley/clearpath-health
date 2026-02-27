@@ -48,44 +48,42 @@
 }
 
 :root {
-  /* Healthcare-Calm Palette */
-  /* Soft Teals, Warm Grays, Reassuring Blues */
-  
-  --background: 210 20% 98%; /* Very light cool gray/blue tint */
-  --foreground: 215 25% 27%; /* Soft charcoal, readable but not harsh */
+  /* Bio-Morphic Minimalism - Deep Charcoal and Soft Off-white */
+  --background: 220 15% 96%; /* Soft off-white with cool tint */
+  --foreground: 220 20% 18%; /* Deep charcoal - accessible contrast (WCAG AA+) */
 
-  --card: 0 0% 100%;
-  --card-foreground: 215 25% 27%;
+  --card: 220 10% 99%; /* Very soft off-white */
+  --card-foreground: 220 20% 18%;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 215 25% 27%;
+  --popover: 220 10% 99%;
+  --popover-foreground: 220 20% 18%;
 
-  --primary: 173 40% 45%; /* Calming Sage/Teal */
-  --primary-foreground: 0 0% 100%;
+  --primary: 160 35% 52%; /* Organic teal-green */
+  --primary-foreground: 220 10% 99%;
 
-  --secondary: 210 30% 92%; /* Soft cloud blue */
-  --secondary-foreground: 215 25% 27%;
+  --secondary: 220 20% 94%; /* Soft cloud */
+  --secondary-foreground: 220 20% 18%;
 
-  --muted: 210 20% 96%;
-  --muted-foreground: 215 15% 50%;
+  --muted: 220 15% 92%;
+  --muted-foreground: 220 15% 45%;
 
-  --accent: 173 30% 94%; /* Very light teal tint */
-  --accent-foreground: 173 40% 35%;
+  --accent: 160 30% 88%; /* Very light organic tint */
+  --accent-foreground: 160 35% 35%;
 
-  --destructive: 0 65% 85%; /* Soft red, not alarming */
-  --destructive-foreground: 0 65% 35%;
+  --destructive: 0 50% 70%; /* Soft coral */
+  --destructive-foreground: 0 50% 25%;
 
-  --border: 210 20% 90%;
-  --input: 210 20% 90%;
-  --ring: 173 40% 45%;
+  --border: 220 15% 88%;
+  --input: 220 15% 88%;
+  --ring: 160 35% 52%;
 
-  --chart-1: 173 40% 45%; /* Teal */
-  --chart-2: 210 60% 65%; /* Soft Blue */
-  --chart-3: 35 60% 70%;  /* Gentle Orange/Sand */
-  --chart-4: 280 40% 75%; /* Soft Purple */
-  --chart-5: 140 40% 65%; /* Soft Green */
+  --chart-1: 160 35% 52%; /* Organic teal */
+  --chart-2: 200 40% 60%; /* Soft sky */
+  --chart-3: 45 50% 65%;  /* Warm sand */
+  --chart-4: 280 30% 70%; /* Soft lavender */
+  --chart-5: 140 35% 60%; /* Organic green */
 
-  --radius: 1rem;
+  --radius: 2rem; /* More organic, larger radius */
 }
 
 .dark {
@@ -118,14 +116,158 @@
   --ring: 173 40% 55%;
 }
 
+/* Biomorphic Utility Classes */
+@layer utilities {
+  /* Organic shapes - fluid, pebble-like */
+  .organic-shape {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  
+  .organic-shape-alt {
+    border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
+  }
+  
+  .pebble-button {
+    border-radius: 2rem 1.5rem 2.5rem 1.8rem / 1.8rem 2.5rem 1.5rem 2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .pebble-button:hover {
+    transform: translateY(-2px) scale(1.02);
+    border-radius: 2.2rem 1.3rem 2.7rem 1.6rem / 1.6rem 2.7rem 1.3rem 2.2rem;
+  }
+  
+  .organic-card {
+    border-radius: 3rem 2rem 2.5rem 2.2rem / 2.2rem 2.5rem 2rem 3rem;
+  }
+  
+  /* Aura gradients - soft, blurred, shifting */
+  .aura-gradient {
+    background: linear-gradient(135deg, 
+      hsl(160 30% 92% / 0.4),
+      hsl(200 30% 94% / 0.3),
+      hsl(140 25% 93% / 0.35)
+    );
+    background-size: 200% 200%;
+    animation: aura-shift 15s ease-in-out infinite;
+    filter: blur(40px);
+  }
+  
+  .aura-gradient-alt {
+    background: linear-gradient(225deg,
+      hsl(280 25% 95% / 0.3),
+      hsl(160 30% 93% / 0.4),
+      hsl(200 30% 94% / 0.35)
+    );
+    background-size: 200% 200%;
+    animation: aura-shift 18s ease-in-out infinite reverse;
+    filter: blur(50px);
+  }
+  
+  .aura-gradient-subtle {
+    background: linear-gradient(90deg,
+      hsl(220 15% 97% / 0.5),
+      hsl(160 20% 98% / 0.4),
+      hsl(200 20% 97% / 0.45)
+    );
+    background-size: 300% 100%;
+    animation: aura-shift-slow 20s ease-in-out infinite;
+    filter: blur(30px);
+  }
+  
+  /* Organic container with soft edges */
+  .organic-container {
+    border-radius: 2.5rem 1.8rem 2.2rem 2rem / 2rem 2.2rem 1.8rem 2.5rem;
+  }
+  
+  /* Soft, organic shadows */
+  .organic-shadow {
+    box-shadow: 
+      0 4px 20px hsl(220 20% 18% / 0.08),
+      0 2px 8px hsl(160 30% 50% / 0.05),
+      inset 0 1px 0 hsl(220 10% 99% / 0.9);
+  }
+  
+  .organic-shadow-lg {
+    box-shadow: 
+      0 8px 30px hsl(220 20% 18% / 0.12),
+      0 4px 12px hsl(160 30% 50% / 0.08),
+      inset 0 1px 0 hsl(220 10% 99% / 0.95);
+  }
+}
+
+/* Aura gradient animations */
+@keyframes aura-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes aura-shift-slow {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 0%;
+  }
+}
+
+/* Theme-specific base styles */
 @layer base {
   * {
     @apply border-border;
   }
+  
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    position: relative;
+    overflow-x: hidden;
   }
+  
+  /* Aura background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(135deg, 
+      hsl(160 30% 92% / 0.4),
+      hsl(200 30% 94% / 0.3),
+      hsl(140 25% 93% / 0.35)
+    );
+    background-size: 200% 200%;
+    animation: aura-shift 15s ease-in-out infinite;
+    filter: blur(40px);
+  }
+  
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(225deg,
+      hsl(280 25% 95% / 0.3),
+      hsl(160 30% 93% / 0.4),
+      hsl(200 30% 94% / 0.35)
+    );
+    background-size: 200% 200%;
+    animation: aura-shift 18s ease-in-out infinite reverse;
+    filter: blur(50px);
+  }
+  
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold tracking-tight text-foreground;
+    letter-spacing: -0.02em;
   }
 }

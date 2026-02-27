@@ -11,23 +11,25 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const navItems = [
     { href: "/upload", label: "Upload & Connect", icon: FileText },
     { href: "/dashboard", label: "My Health", icon: Activity },
-    { href: "/vault", label: "Secure Vault", icon: History },
+    { href: "/vault", label: "Document History", icon: History },
   ];
 
   return (
     <div className="min-h-screen bg-background font-sans text-foreground selection:bg-primary/20">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
+      <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md organic-shadow">
         <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6">
-          <Link href="/">
-            <a className="flex items-center gap-2 group cursor-pointer">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                <ShieldCheck className="h-5 w-5" />
-              </div>
-              <span className="text-lg font-bold tracking-tight text-foreground">
-                ClearPath<span className="text-primary">Health</span>
-              </span>
-            </a>
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link href="/">
+              <a className="flex items-center gap-2 group cursor-pointer">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                  <ShieldCheck className="h-5 w-5" />
+                </div>
+                <span className="text-lg font-bold tracking-tight text-foreground">
+                  ClearPath<span className="text-primary">Health</span>
+                </span>
+              </a>
+            </Link>
+          </div>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
@@ -40,7 +42,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </a>
               </Link>
             ))}
-            <Button size="sm" variant="outline" className="ml-4 rounded-full border-primary/20 hover:bg-primary/5 hover:text-primary">
+            <Button 
+              size="sm" 
+              variant="outline" 
+              className="ml-4 border-primary/20 hover:bg-primary/5 hover:text-primary pebble-button"
+            >
               Sign Out
             </Button>
           </nav>
@@ -86,7 +92,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <main className="container mx-auto px-4 py-6 sm:px-6 md:py-10 animate-in fade-in duration-500">
         {children}
       </main>
-      <footer className="border-t bg-muted/30 py-6 text-center text-sm text-muted-foreground">
+      <footer className="border-t bg-muted/30 py-6 text-center text-sm text-muted-foreground organic-shadow">
         <div className="container mx-auto flex flex-col items-center gap-2">
           <div className="flex items-center gap-2 text-primary/80">
             <ShieldCheck className="h-4 w-4" />

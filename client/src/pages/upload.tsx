@@ -6,10 +6,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { UploadCloud, Camera, Link as LinkIcon, Lock, Check } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { useThemeClasses } from "@/hooks/use-theme-classes";
 
 export default function UploadHub() {
   const [location, setLocation] = useLocation();
   const [isDragging, setIsDragging] = useState(false);
+  const themeClasses = useThemeClasses();
   
   // Parse query param for tab
   const params = new URLSearchParams(window.location.search);
@@ -41,8 +43,10 @@ export default function UploadHub() {
           </p>
         </div>
 
-        <Card className="border-none shadow-xl bg-card/50 backdrop-blur-sm overflow-hidden">
-          <CardHeader className="bg-primary/5 border-b border-primary/10 pb-6">
+        <Card className={`border-none bg-card/50 backdrop-blur-sm overflow-hidden ${
+          themeClasses.combine("shadow-xl", "organic-card organic-shadow-lg", "")
+        }`}>
+          <CardHeader className="bg-primary/5 border-b border-primary/10 pb-6 organic-container">
             <div className="flex items-center justify-center gap-2 text-primary text-sm font-medium">
               <Lock className="h-4 w-4" />
               <span>End-to-end Encrypted & HIPAA Secure</span>
@@ -50,12 +54,18 @@ export default function UploadHub() {
           </CardHeader>
           <CardContent className="p-6 md:p-8">
             <Tabs defaultValue={defaultTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-8 p-1 h-auto bg-muted/50 rounded-xl">
-                <TabsTrigger value="upload" className="rounded-lg py-3 text-base data-[state=active]:bg-white data-[state=active]:shadow-sm transition-all">
+              <TabsList className={`grid w-full grid-cols-2 mb-8 p-1 h-auto bg-muted/50 ${
+                themeClasses.combine("", "organic-container", "rounded-xl")
+              }`}>
+                <TabsTrigger value="upload" className={`py-3 text-base data-[state=active]:bg-white data-[state=active]:shadow-sm transition-all ${
+                  themeClasses.combine("", "pebble-button", "rounded-lg")
+                }`}>
                   <UploadCloud className="mr-2 h-4 w-4" />
                   Upload Files
                 </TabsTrigger>
-                <TabsTrigger value="connect" className="rounded-lg py-3 text-base data-[state=active]:bg-white data-[state=active]:shadow-sm transition-all">
+                <TabsTrigger value="connect" className={`py-3 text-base data-[state=active]:bg-white data-[state=active]:shadow-sm transition-all ${
+                  themeClasses.combine("", "pebble-button", "rounded-lg")
+                }`}>
                   <LinkIcon className="mr-2 h-4 w-4" />
                   Connect Provider
                 </TabsTrigger>
@@ -64,16 +74,19 @@ export default function UploadHub() {
               <TabsContent value="upload" className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <div 
                   className={`
-                    border-3 border-dashed rounded-2xl p-10 text-center transition-all cursor-pointer
+                    border-3 border-dashed p-10 text-center transition-all cursor-pointer
                     flex flex-col items-center justify-center gap-4 bg-background
                     ${isDragging ? 'border-primary bg-primary/5 scale-[1.02]' : 'border-muted-foreground/20 hover:border-primary/50 hover:bg-muted/30'}
+                    ${themeClasses.combine("", "organic-container", "rounded-2xl")}
                   `}
                   onDragOver={handleDragOver}
                   onDragLeave={handleDragLeave}
                   onDrop={handleDrop}
                   onClick={() => setLocation("/processing")}
                 >
-                  <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
+                  <div className={`h-16 w-16 bg-primary/10 flex items-center justify-center text-primary mb-2 ${
+                    themeClasses.combine("", "organic-shape", "rounded-full")
+                  }`}>
                     <UploadCloud className="h-8 w-8" />
                   </div>
                   <div>
@@ -85,17 +98,23 @@ export default function UploadHub() {
                     <span className="text-xs text-muted-foreground uppercase">Or</span>
                     <Separator className="flex-1" />
                   </div>
-                  <Button size="lg" className="w-full max-w-xs rounded-xl h-12">
+                  <Button size="lg" className={`w-full max-w-xs h-12 ${
+                    themeClasses.combine("", "pebble-button", "rounded-xl")
+                  }`}>
                     Browse Files
                   </Button>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Button variant="outline" className="h-20 rounded-xl border-2 hover:border-primary/50 hover:bg-primary/5 flex flex-col items-center justify-center gap-2" onClick={() => setLocation("/processing")}>
+                  <Button variant="outline" className={`h-20 border-2 hover:border-primary/50 hover:bg-primary/5 flex flex-col items-center justify-center gap-2 ${
+                    themeClasses.combine("", "pebble-button organic-container", "rounded-xl")
+                  }`} onClick={() => setLocation("/processing")}>
                     <Camera className="h-6 w-6 text-primary" />
                     <span className="font-medium">Take a Photo</span>
                   </Button>
-                  <div className="h-20 rounded-xl border-2 border-transparent bg-muted/30 flex items-center justify-center px-4 text-sm text-muted-foreground text-center">
+                  <div className={`h-20 border-2 border-transparent bg-muted/30 flex items-center justify-center px-4 text-sm text-muted-foreground text-center ${
+                    themeClasses.combine("", "organic-container", "rounded-xl")
+                  }`}>
                     Files are automatically deleted after processing for your privacy.
                   </div>
                 </div>
@@ -107,9 +126,13 @@ export default function UploadHub() {
                      <button 
                        key={provider}
                        onClick={() => setLocation("/processing")}
-                       className="group flex items-center p-4 rounded-xl border-2 border-muted hover:border-primary hover:bg-primary/5 transition-all text-left bg-background"
+                       className={`group flex items-center p-4 border-2 border-muted hover:border-primary hover:bg-primary/5 transition-all text-left bg-background ${
+                         themeClasses.combine("", "organic-container", "rounded-xl")
+                       }`}
                      >
-                       <div className="h-12 w-12 rounded-lg bg-muted flex items-center justify-center text-lg font-bold text-muted-foreground group-hover:bg-white group-hover:text-primary transition-colors">
+                       <div className={`h-12 w-12 bg-muted flex items-center justify-center text-lg font-bold text-muted-foreground group-hover:bg-white group-hover:text-primary transition-colors ${
+                         themeClasses.combine("", "organic-shape", "rounded-lg")
+                       }`}>
                          {provider.charAt(0)}
                        </div>
                        <div className="ml-4">

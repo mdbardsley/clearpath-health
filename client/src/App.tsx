@@ -9,6 +9,7 @@ import UploadHub from "@/pages/upload";
 import Processing from "@/pages/processing";
 import Dashboard from "@/pages/dashboard";
 import Vault from "@/pages/vault";
+import DocumentView from "@/pages/document-view";
 
 function Router() {
   return (
@@ -17,6 +18,7 @@ function Router() {
       <Route path="/upload" component={UploadHub} />
       <Route path="/processing" component={Processing} />
       <Route path="/dashboard" component={Dashboard} />
+      <Route path="/vault/:id" component={DocumentView} />
       <Route path="/vault" component={Vault} />
       <Route component={NotFound} />
     </Switch>

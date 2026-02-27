@@ -3,13 +3,18 @@ import { Button } from "@/components/ui/button";
 import { ShieldCheck, FileText, Link as LinkIcon, ArrowRight } from "lucide-react";
 import onboardingHero from "@/assets/images/onboarding-hero.png";
 import Layout from "@/components/layout";
+import { useThemeClasses } from "@/hooks/use-theme-classes";
 
 export default function Onboarding() {
+  const themeClasses = useThemeClasses();
+  
   return (
     <Layout>
       <div className="flex min-h-[80vh] flex-col items-center justify-center gap-10 md:flex-row md:justify-between">
         <div className="flex max-w-xl flex-col gap-6 text-center md:text-left">
-          <div className="mx-auto flex w-fit items-center gap-2 rounded-full border bg-background px-4 py-1.5 shadow-sm md:mx-0">
+          <div className={`mx-auto flex w-fit items-center gap-2 border bg-background px-4 py-1.5 md:mx-0 ${
+            themeClasses.combine("", "organic-container organic-shadow", "rounded-full shadow-sm")
+          }`}>
             <ShieldCheck className="h-4 w-4 text-primary" />
             <span className="text-sm font-medium text-muted-foreground">
               HIPAA Compliant & Secure
@@ -28,13 +33,21 @@ export default function Onboarding() {
           
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center md:justify-start pt-4">
             <Link href="/upload">
-              <Button size="lg" className="h-14 gap-2 rounded-2xl px-8 text-base shadow-lg shadow-primary/20 transition-all hover:scale-105 hover:shadow-xl">
+              <Button size="lg" className={`h-14 gap-2 px-8 text-base transition-all hover:scale-105 ${
+                themeClasses.combine(
+                  "shadow-lg shadow-primary/20 hover:shadow-xl",
+                  "pebble-button organic-shadow-lg",
+                  "rounded-2xl"
+                )
+              }`}>
                 <FileText className="h-5 w-5" />
                 Upload Paperwork
               </Button>
             </Link>
             <Link href="/upload?tab=connect">
-              <Button size="lg" variant="outline" className="h-14 gap-2 rounded-2xl px-8 text-base border-2 hover:bg-secondary/50 transition-all hover:scale-105">
+              <Button size="lg" variant="outline" className={`h-14 gap-2 px-8 text-base border-2 hover:bg-secondary/50 transition-all hover:scale-105 ${
+                themeClasses.combine("", "pebble-button", "rounded-2xl")
+              }`}>
                 <LinkIcon className="h-5 w-5" />
                 Connect Records
               </Button>
@@ -50,11 +63,11 @@ export default function Onboarding() {
         </div>
 
         <div className="relative w-full max-w-md md:max-w-lg lg:max-w-xl">
-          <div className="absolute inset-0 -z-10 rounded-full bg-primary/10 blur-3xl filter" />
+          <div className="absolute inset-0 -z-10 bg-primary/10 blur-3xl filter organic-shape" />
           <img
             src={onboardingHero}
             alt="Person understanding medical records"
-            className="w-full h-auto drop-shadow-2xl animate-in fade-in slide-in-from-right-10 duration-1000"
+            className="w-full h-auto organic-card organic-shadow-lg drop-shadow-2xl animate-in fade-in slide-in-from-right-10 duration-1000"
           />
         </div>
       </div>

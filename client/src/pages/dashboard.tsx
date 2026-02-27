@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ArrowRight, Share2, Download, CheckCircle, AlertCircle, Info } from "lucide-react";
+import { useThemeClasses } from "@/hooks/use-theme-classes";
 
 // Custom Gauge Component
 const MetricGauge = ({ value, label, status, unit }: { value: number, label: string, status: 'normal' | 'warning' | 'critical', unit: string }) => {
@@ -14,14 +15,22 @@ const MetricGauge = ({ value, label, status, unit }: { value: number, label: str
   
   const statusColors = colors[status];
 
+  const themeClasses = useThemeClasses();
+  
   return (
-    <div className="flex flex-col items-center p-4 rounded-xl border bg-card shadow-sm hover:shadow-md transition-shadow">
+    <div className={`flex flex-col items-center p-4 border bg-card transition-shadow hover:shadow-md ${
+      themeClasses.combine("shadow-sm", "organic-container organic-shadow", "rounded-xl")
+    }`}>
       <span className="text-sm font-medium text-muted-foreground mb-2">{label}</span>
-      <div className={`h-16 w-16 rounded-full flex items-center justify-center border-4 text-lg font-bold ${statusColors}`}>
+      <div className={`h-16 w-16 flex items-center justify-center border-4 text-lg font-bold ${statusColors} ${
+        themeClasses.combine("", "organic-shape", "rounded-full")
+      }`}>
         {value}
       </div>
       <span className="text-xs text-muted-foreground mt-1">{unit}</span>
-      <span className={`text-xs font-semibold px-2 py-0.5 rounded-full mt-2 ${status === 'normal' ? 'bg-emerald-100 text-emerald-700' : status === 'warning' ? 'bg-amber-100 text-amber-700' : 'bg-rose-100 text-rose-700'}`}>
+      <span className={`text-xs font-semibold px-2 py-0.5 mt-2 ${
+        status === 'normal' ? 'bg-emerald-100 text-emerald-700' : status === 'warning' ? 'bg-amber-100 text-amber-700' : 'bg-rose-100 text-rose-700'
+      } ${themeClasses.combine("", "pebble-button", "rounded-full")}`}>
         {status === 'normal' ? 'In Range' : 'Attention'}
       </span>
     </div>
@@ -29,6 +38,8 @@ const MetricGauge = ({ value, label, status, unit }: { value: number, label: str
 };
 
 export default function Dashboard() {
+  const themeClasses = useThemeClasses();
+  
   return (
     <Layout>
       <div className="space-y-8 max-w-5xl mx-auto">
@@ -38,17 +49,19 @@ export default function Dashboard() {
             <p className="text-muted-foreground">Based on your upload from Feb 24, 2026</p>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" size="sm" className="rounded-full">
+            <Button variant="outline" size="sm" className={themeClasses.combine("", "pebble-button", "rounded-full")}>
               <Share2 className="mr-2 h-4 w-4" /> Share with Dr.
             </Button>
-            <Button variant="outline" size="sm" className="rounded-full">
+            <Button variant="outline" size="sm" className={themeClasses.combine("", "pebble-button", "rounded-full")}>
               <Download className="mr-2 h-4 w-4" /> PDF
             </Button>
           </div>
         </div>
 
         {/* The "Plain English" Card */}
-        <Card className="border-none shadow-lg bg-gradient-to-br from-primary/5 to-secondary/20 overflow-hidden">
+        <Card className={`border-none bg-gradient-to-br from-primary/5 to-secondary/20 overflow-hidden ${
+          themeClasses.combine("shadow-lg", "organic-card organic-shadow-lg", "")
+        }`}>
           <CardHeader className="pb-2">
             <div className="flex items-center gap-2 text-primary font-semibold tracking-wide uppercase text-xs">
               <Info className="h-4 w-4" />
@@ -69,7 +82,9 @@ export default function Dashboard() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Key Metrics */}
-          <Card className="col-span-1 md:col-span-2 border-none shadow-md">
+          <Card className={`col-span-1 md:col-span-2 border-none ${
+            themeClasses.combine("shadow-md", "organic-card organic-shadow", "")
+          }`}>
             <CardHeader>
               <CardTitle className="text-lg">Key Lab Values</CardTitle>
             </CardHeader>
@@ -86,8 +101,10 @@ export default function Dashboard() {
           </Card>
 
           {/* Next Steps */}
-          <Card className="col-span-1 border-none shadow-md bg-white">
-            <CardHeader className="bg-secondary/30 pb-4">
+          <Card className={`col-span-1 border-none bg-white ${
+            themeClasses.combine("shadow-md", "organic-card organic-shadow", "")
+          }`}>
+            <CardHeader className="bg-secondary/30 pb-4 organic-container">
               <CardTitle className="text-lg flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-primary" />
                 What do I do now?
@@ -96,19 +113,27 @@ export default function Dashboard() {
             <CardContent className="pt-6">
               <ul className="space-y-4">
                 <li className="flex gap-3 items-start">
-                  <div className="h-6 w-6 rounded-full border-2 border-primary/30 text-primary/70 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">1</div>
+                  <div className={`h-6 w-6 border-2 border-primary/30 text-primary/70 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 ${
+                    themeClasses.combine("", "organic-shape", "rounded-full")
+                  }`}>1</div>
                   <span className="text-sm">Schedule a follow-up with Dr. Smith in 6 months.</span>
                 </li>
                 <li className="flex gap-3 items-start">
-                  <div className="h-6 w-6 rounded-full border-2 border-primary/30 text-primary/70 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">2</div>
+                  <div className={`h-6 w-6 border-2 border-primary/30 text-primary/70 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 ${
+                    themeClasses.combine("", "organic-shape-alt", "rounded-full")
+                  }`}>2</div>
                   <span className="text-sm">Increase daily water intake to 2.5 liters.</span>
                 </li>
                 <li className="flex gap-3 items-start">
-                  <div className="h-6 w-6 rounded-full border-2 border-primary/30 text-primary/70 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">3</div>
+                  <div className={`h-6 w-6 border-2 border-primary/30 text-primary/70 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 ${
+                    themeClasses.combine("", "organic-shape", "rounded-full")
+                  }`}>3</div>
                   <span className="text-sm">Continue taking Vitamin D supplements as prescribed.</span>
                 </li>
               </ul>
-              <Button className="w-full mt-8 rounded-xl shadow-lg shadow-primary/10" size="lg">
+              <Button className={`w-full mt-8 shadow-lg shadow-primary/10 size-lg ${
+                themeClasses.combine("", "pebble-button", "rounded-xl")
+              }`} size="lg">
                 Add to Calendar <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </CardContent>

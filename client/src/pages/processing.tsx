@@ -4,11 +4,13 @@ import Layout from "@/components/layout";
 import { Progress } from "@/components/ui/progress";
 import { BrainCircuit, Sparkles, FileSearch } from "lucide-react";
 import calmBg from "@/assets/images/calm-bg.png";
+import { useThemeClasses } from "@/hooks/use-theme-classes";
 
 export default function Processing() {
   const [location, setLocation] = useLocation();
   const [progress, setProgress] = useState(0);
   const [step, setStep] = useState(0);
+  const themeClasses = useThemeClasses();
 
   const steps = [
     { text: "Securely uploading document...", icon: FileSearch },
@@ -49,15 +51,21 @@ export default function Processing() {
         </div>
 
         <div className="relative">
-          <div className="h-32 w-32 rounded-full bg-white shadow-xl flex items-center justify-center relative z-10 animate-pulse">
+          <div className={`h-32 w-32 bg-white shadow-xl flex items-center justify-center relative z-10 animate-pulse ${
+            themeClasses.combine("", "organic-shape", "rounded-full")
+          }`}>
              {(() => {
                const Icon = steps[step].icon;
                return <Icon className="h-12 w-12 text-primary animate-bounce duration-[3000ms]" />;
              })()}
           </div>
           {/* Ripple effect */}
-          <div className="absolute top-0 left-0 h-32 w-32 rounded-full bg-primary/20 animate-ping duration-[3000ms]" />
-          <div className="absolute top-0 left-0 h-32 w-32 rounded-full bg-secondary/30 animate-ping delay-700 duration-[3000ms]" />
+          <div className={`absolute top-0 left-0 h-32 w-32 bg-primary/20 animate-ping duration-[3000ms] ${
+            themeClasses.combine("", "organic-shape", "rounded-full")
+          }`} />
+          <div className={`absolute top-0 left-0 h-32 w-32 bg-secondary/30 animate-ping delay-700 duration-[3000ms] ${
+            themeClasses.combine("", "organic-shape-alt", "rounded-full")
+          }`} />
         </div>
 
         <div className="space-y-6 w-full max-w-md">
@@ -74,7 +82,9 @@ export default function Processing() {
           </div>
         </div>
         
-        <div className="p-4 bg-primary/5 rounded-xl border border-primary/10 text-sm text-muted-foreground max-w-sm">
+        <div className={`p-4 bg-primary/5 border border-primary/10 text-sm text-muted-foreground max-w-sm ${
+          themeClasses.combine("", "organic-container", "rounded-xl")
+        }`}>
           "Medical jargon can be confusing. We're translating it into plain English for you right now."
         </div>
       </div>
